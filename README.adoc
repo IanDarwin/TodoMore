@@ -1,0 +1,105 @@
+= ToDoMore: To Do More, you must know what needs doing, and when
+
+ToDoMore is a Java geek's TODO list application. It has a command-line interface,
+a server-centric (JSF) web interface, an Android application (soon), and, well, more.
+Hopefully an Ember.js interface, for example.
+
+Warning: as of late 2015, it is NOT ready for non-geek users; there are some things
+you still have to do "manually" in the SQL database, like, maintaining your list of todo Categories.
+
+It was written after the original author Ian Darwin tried using 5 or 6 different
+ToDo apps, both free and commercial, and found something lacking in each.
+
+It is broken into sub-projects (each of which is currently a separate github
+module, so you don't have to check out ones you don't want - one of my peeves
+about git!):
+
+. ToDoModel - the data model classes, in Java, Annotated for JPA (so would work with Hibernate too). All of my other modules need this.
+. TodoService - the JSF and REST services.
+. TodoDroid - (not written yet) Android client
+
+There may be others.
+
+== Security
+
+At present it is set up for one user, and depends on JavaEE container managed security.
+It at any rate like most REST services, uses HTTP BASIC Auth, so you MUST enforce use of HTTPS
+when you install it facing the internet! Caveat lector. You have been warned.
+Actually, this warning will self-destruct in a few years, when public HTTP goes away altogether.
+Remember if you heard this here first: http on the public internet will be gone by 2020.
+Because routers are not secure.
+
+== Building/Running
+
+=== Pre-reqs
+
+. Java 8 (the current release as of this writing)
+. Maven 2 or 3
+. If you want to run your own TodoService:
+.. A JavaEE server (Wildfly 8 used)
+.. A relational database (PostgreSQL used)
+
+If you want to change the EE server or DB used, knock yourself out.
+If it works without drastic changes, please send me the config file changes
+via an github pull request.
+
+=== The Data Model
+----
+git clone https://github.com/IanDarwin/TodoModel
+cd TodoModel
+mvn install
+----
+
+Maven will download a few pre-reqs, build the classes, run any self-tests there,
+package the entire data model into a Jar file, and install it in your personal Maven repo,
+so the other modules can find it. `BUILD SUCCESS` --> Done.
+
+=== The REST and JSF Service
+
+----
+git clone https://github.com/IanDarwin/TodoModel
+cd TodoModel
+mvn package
+----
+
+Now you need to set up your database and app server. For me, the database setup is something like this:
+
+----
+psql
+create role todouser with password 'top secret here' login nosuper;
+create database todo owner todouser;
+\q
+----
+Of course I don't create tables by hand, since JPA will do this automatically in "update" mode.
+
+Now tell the app server about it. For me, this meant adding the following datasource to `$WILDFLYHOME/standalone/configuration/standalone.xml`:
+----
+
+                <datasource jndi-name="java:jboss/datasources/TodoDataSource" pool-name="TodoPool" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:postgresql:todo</connection-url>
+                    <driver>postgres</driver>
+                    <security>
+                        <user-name>todouser</user-name>
+                        <password>top secret here</password>
+                    </security>
+                </datasource>
+----
+
+Of course I already had the Postgres driver installed; this is a bit of a pain point in Wildfly as of this writing,
+so best google that to see if they've fixed it.
+
+Now you can install the app and begin todo-ing. For my setup this is just:
+
+. Run the Wildfly user installer `$WILDFLYHOME/bin/add-user.sh` (or .bat if you're on a batty operating system)
+to create an "application" user and put them in role "todouser"
+. Edit `src/main/webapp/WEB-INF/jboss-web.xml`
+. Run `mvn wildfly:deploy
+
+This uses the Wildfly plugin. There are skeletal plugin installations for others (at least Glassfish and TomEE)
+but they are NOT tested. Again, if you get another EE server working, please submit the changes so others may benefit.
+
+If it works, visit https://localhost/todolist
+
+May all your todo items be completed someday.
+
+Ian
