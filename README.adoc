@@ -1,39 +1,48 @@
-= ToDoMore: To Do More, you must know what needs doing, and when
+= ToDoMore: "To Do More, you must know what needs doing, and when"
 
 ToDoMore is a Java geek's TODO list application. It has a command-line interface,
 a server-centric (JSF) web interface, an Android application (soon), and, well, more.
 Hopefully an Ember.js interface, for example.
 
 Warning: as of late 2015, it is NOT ready for non-geek users; there are some things
-you still have to do "manually" in the SQL database, like, maintaining your list of todo Categories.
+you still have to do "manually" in the SQL database, like, maintaining your list 
+of Todo Categories.
 
 It was written after the original author Ian Darwin tried using 5 or 6 different
 ToDo apps, both free and commercial, and found something lacking in each.
 
-It is broken into sub-projects (each of which is currently a separate github
-module, so you don't have to check out ones you don't want - one of my peeves
-about git!):
+It is divided into sub-projects, each of which is currently a separate github
+module, so you don't have to check out ones you don't want 
+(one of my peeves about git!):
 
-. ToDoModel - the data model classes, in Java, Annotated for JPA (so would work with Hibernate too). All of my other modules need this.
-. TodoService - the JSF and REST services.
-. TodoDroid - (not written yet) Android client
+. https://github.com/IanDarwin/TodoModel[ToDoModel] - the data model classes, in Java, Annotated for JPA (so would work with Hibernate too). All of my other modules need this.
+. https://github.com/IanDarwin/TodoService[TodoService] - the JSF and REST services.
+. TodoAndroid - (not written yet) Android client
 
-There may be others.
+There will be More.
+
+== No lock-in
+
+The TodoService module's JSF page can Export your Todo items in "standard"
+https://github.com/ginatrapani/todo.txt-cli/wiki/The-Todo.txt-Format[ToDoTxt.com]
+format; there are http://todotxt.com/[numerous other ToDo apps]
+that can process this format.
 
 == Security
 
-At present it is set up for one user, and depends on JavaEE container managed security.
-It at any rate like most REST services, uses HTTP BASIC Auth, so you MUST enforce use of HTTPS
+At present the TodoService module it is set up for one user, 
+and depends on JavaEE container managed security.
+Like most REST services, uses HTTP BASIC Auth, so you MUST enforce use of HTTPS
 when you install it facing the internet! Caveat lector. You have been warned.
 Actually, this warning will self-destruct in a few years, when public HTTP goes away altogether.
-Remember if you heard this here first: http on the public internet will be gone by 2020.
+Remember if you heard it here first: http on the public internet will be gone by 2020.
 Because routers are not secure.
 
 == Building/Running
 
 === Pre-reqs
 
-. Java 8 (the current release as of this writing)
+. Java 8 (the current Java release as of this writing)
 . Maven 2 or 3
 . If you want to run your own TodoService:
 .. A JavaEE server (Wildfly 8 used)
