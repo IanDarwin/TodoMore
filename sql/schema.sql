@@ -128,33 +128,21 @@ ALTER TABLE todo OWNER TO tewdew;
 --
 
 COPY context (id, name) FROM stdin;
-10	Andrej-RIP
 20	Android
 30	Car maint
 40	Eco
-50	Entrepreneurial
 60	Family
 70	FOSS
 80	Home
 90	Java
 100	Life
-110	LT-936
-120	LT-Teaching
 130	OpenBSD
-140	ORM-ACB
-150	ORM-ScreenCast
 160	Philosophy
 170	Photography
 180	Politics
-190	Polity
-200	Preps
-210	Promoting ASM
-220	Promoting Writing
-230	Spanish
-240	SpeakingEvents
+240	Speaking
 250	SysAdmin
 260	Writing
-270	Woodworking
 \.
 
 
@@ -177,6 +165,7 @@ SELECT pg_catalog.setval('hibernate_sequence', 101, true);
 --
 
 COPY project (id, name) FROM stdin;
+1	New Project
 \.
 
 
