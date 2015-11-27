@@ -8,4 +8,6 @@ COPY hint(id, hint, author) FROM stdin;
 2	Be honest with yourself; if you''re really never going to do a task, delete it!	--Ian
 3	Start every day with a look at your TodoMore list; it can help organize your day.	
 4	If a task can be done in a minute or two, do it now rather than entering it into TodoMore and have to do it later!	--Ian
+5	Try to keep no more than 10 top-priority items, to avoid getting overwhelmed	
+6	Tell us how we can improve TodoMore. Better yet, fix it and send us the code via a GitHub "pull request".
 \.
