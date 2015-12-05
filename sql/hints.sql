@@ -10,5 +10,5 @@ COPY hint(id, hint, author) FROM stdin;
 4	If a task can be done in a minute or two, do it now rather than entering it into TodoMore and have to do it later!	Ian
 5	Try to keep no more than 10 top-priority items, to avoid getting overwhelmed	
 6	Tell us how we can improve TodoMore. Better yet, fix it and send us the code via a GitHub "pull request".	Ian
-7	When you finish a Todo item, TodoMore lets you either delete it completely, or mark it Done (Done items are hidden from the normal view)
+7	When you finish a Todo item, TodoMore lets you either delete it completely, or mark it Done (Done items are hidden from the normal view)	
 \.
