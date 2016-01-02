@@ -16,8 +16,9 @@ module, so you don't have to check out ones you don't want
 (one of my peeves about git!):
 
 . https://github.com/IanDarwin/TodoModel[ToDoModel] - the data model classes, in Java, Annotated for JPA (so would work with Hibernate too). All of my other modules need this.
-. https://github.com/IanDarwin/TodoService[TodoService] - the JSF and REST services.
-. TodoAndroid - (not written yet) Android client
+. https://github.com/IanDarwin/TodoREST[TodoREST] - the REST services.
+. https://github.com/IanDarwin/TodoJSF[TodoJSF] - the JSF web application
+. https://github.com/IanDarwin/TodoAndroid[TodoAndroid] - the Android client
 
 There will be More.
 
