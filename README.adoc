@@ -6,7 +6,7 @@ Hopefully an Ember.js interface, for example.
 
 Warning: as of late 2015, it is NOT ready for non-geek users; there are some things
 you still have to do "manually" in the SQL database, like, maintaining your list 
-of Todo Categories.
+of Todo Categories. And, big chunks of it will only work for one user per installation.
 
 It was written after the original author Ian Darwin tried using 5 or 6 different
 ToDo apps, both free and commercial, and found something lacking in each.
@@ -15,7 +15,7 @@ It is divided into sub-projects, each of which is currently a separate github
 module, so you don't have to check out ones you don't want 
 (one of my peeves about git!):
 
-. https://github.com/IanDarwin/TodoModel[ToDoModel] - the data model classes, in Java, Annotated for JPA (so would work with Hibernate too). All of my other modules need this.
+. https://github.com/IanDarwin/TodoModel[ToDoModel] - the data model classes, in Java, Annotated for JPA (so would work with Hibernate too). All the other modules need this (see minimal build instructions below).
 . https://github.com/IanDarwin/TodoREST[TodoREST] - the REST services.
 . https://github.com/IanDarwin/TodoJSF[TodoJSF] - the JSF web application
 . https://github.com/IanDarwin/TodoAndroid[TodoAndroid] - the Android client
@@ -55,21 +55,24 @@ via an github pull request.
 
 === The Data Model
 ----
-git clone https://github.com/IanDarwin/TodoModel
-cd TodoModel
+git clone https://github.com/IanDarwin/TodoDataModel
+cd TodoDataModel
 mvn install
 ----
 
-Maven will download a few pre-reqs, build the classes, run any self-tests there,
+Maven will download some pre-reqs, build the classes, run some self-tests there,
 package the entire data model into a Jar file, and install it in your personal Maven repo,
 so the other modules can find it. `BUILD SUCCESS` --> Done.
 
-=== The REST and JSF Service
+=== The REST and JSF Services
 
 ----
-git clone https://github.com/IanDarwin/TodoModel
-cd TodoModel
-mvn package
+for d in TodoJSF TodoREST
+do
+	git clone https://github.com/IanDarwin/${d}
+	cd ${d}
+	mvn package
+done
 ----
 
 Now you need to set up your database and app server. For me, the database setup is something like this:
@@ -80,7 +83,7 @@ create role todouser with password 'top secret here' login nosuper;
 create database todo owner todouser;
 \q
 ----
-Of course I don't create tables by hand, since JPA will do this automatically in "update" mode.
+I don't create tables by hand, since JPA will do this automatically in "update" mode.
 
 Now tell the app server about it. For me, this meant adding the following datasource to `$WILDFLYHOME/standalone/configuration/standalone.xml`:
 ----
@@ -108,7 +111,21 @@ to create an "application" user and put them in role "todouser"
 This uses the Wildfly plugin. There are skeletal plugin installations for others (at least Glassfish and TomEE)
 but they are NOT tested. Again, if you get another EE server working, please submit the changes so others may benefit.
 
-If it works, visit https://localhost/todolist
+If it works, visit some URL like https://localhost/todolist and see a login page. Login and see a list of tasks. Easy!
+
+=== The Android Client
+
+This is currently the least developed. IF you have the Android SDK installed, 
+and either an emulator running or a device connected,
+it *might* work do to this:
+
+----
+git clone https://github.com/IanDarwin/TodoAndroid
+cd TodoAndroid
+mvn package android:deploy android:run
+----
+
+=== Summary
 
 May all your todo items be completed someday.
 
