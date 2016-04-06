@@ -4,9 +4,12 @@ ToDoMore is a Java geek's TODO list application. It has a command-line interface
 a server-centric (JSF) web interface, an Android application (soon), and, well, more.
 Hopefully an Ember.js interface, for example.
 
-Warning: as of late 2015, it is NOT ready for non-geek users; there are some things
+It is not, however, the be-all and end-all, and no aspirations to become what
+this person is on about: http://www.wired.com/2016/03/best-to-do-list-app/
+
+As of late 2015, it is NOT ready for non-geek users; there are some things
 you still have to do "manually" in the SQL database, like, maintaining your list 
-of Todo Categories. And, big chunks of it will only work for one user per installation.
+of Todo Categories. And, right now, most of it will only work for one user per installation.
 
 It was written after the original author Ian Darwin tried using 5 or 6 different
 ToDo apps, both free and commercial, and found something lacking in each.
