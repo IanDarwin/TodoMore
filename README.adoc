@@ -3,8 +3,8 @@
 == "To Do More, you must know what needs doing, and when"
 
 ToDoMore is a Java geek's TODO list application. It has a command-line interface,
-a server-centric (JSF) web interface, an Android application (soon), and, well, more.
-Hopefully an Ember.js interface, for example.
+a server-centric (JSF) web interface, an Android application, and, well, more.
+Maybe an Ember.js or Angular.js interface, for example.
 
 It is not, however, the be-all and end-all, and no aspirations to become what
 this person is on about: http://www.wired.com/2016/03/best-to-do-list-app/
