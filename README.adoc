@@ -60,6 +60,9 @@ If it works without drastic changes, please send me the config file changes
 via an github pull request.
 
 === The Data Model
+
+All the other Java modules need the DataModel, so build it first.
+
 ----
 git clone https://github.com/IanDarwin/TodoDataModel
 cd TodoDataModel
@@ -94,8 +97,8 @@ create database todo owner todouser;
 I don't create tables by hand, since JPA will do this automatically in "update" mode.
 
 Now tell the app server about it. For me, this meant adding the following datasource to `$WILDFLYHOME/standalone/configuration/standalone.xml`:
-----
 
+----
                 <datasource jndi-name="java:jboss/datasources/TodoDataSource" pool-name="TodoPool" enabled="true" use-java-context="true">
                     <connection-url>jdbc:postgresql:todo</connection-url>
                     <driver>postgres</driver>
@@ -106,7 +109,7 @@ Now tell the app server about it. For me, this meant adding the following dataso
                 </datasource>
 ----
 
-Of course I already had the Postgres driver installed; this is a bit of a pain point in Wildfly as of this writing,
+I already had the Postgres driver installed; this is a bit of a pain point in Wildfly as of this writing,
 so best google that to see if they've fixed it.
 
 Now you can install the app and begin todo-ing. For my setup this is just:
@@ -114,9 +117,10 @@ Now you can install the app and begin todo-ing. For my setup this is just:
 . Run the Wildfly user installer `$WILDFLYHOME/bin/add-user.sh` (or .bat if you're on a batty operating system)
 to create an "application" user and put them in role "todouser"
 . Edit `src/main/webapp/WEB-INF/jboss-web.xml`
-. Run `mvn wildfly:deploy
+. Run `mvn wildfly:deploy` in the two modules listed above.
 
-This uses the Wildfly plugin. There are skeletal plugin installations for others (at least Glassfish and TomEE)
+This uses the Wildfly Maven plugin to deploy the webapp into the application server.
+There are skeletal plugin installations in `pom.xml` for others (at least Glassfish and TomEE)
 but they are NOT tested. Again, if you get another EE server working, please submit the changes so others may benefit.
 
 If it works, visit some URL like https://localhost/todolist and see a login page. Login and see a list of tasks. Easy!
@@ -132,6 +136,10 @@ git clone https://github.com/IanDarwin/TodoAndroid
 cd TodoAndroid
 mvn package android:deploy android:run
 ----
+
+Go into Settings, configure your username, password, server, path, etc. Use the Test button to see if you can talk to the server.
+Turn on Syncing. Tasks should flow between your server and your mobile.
+Now you can get back to doing your tasks and checking them off!
 
 === Summary
 
