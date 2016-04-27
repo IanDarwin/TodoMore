@@ -22,6 +22,7 @@ module, so you don't have to check out ones you don't want
 . https://github.com/IanDarwin/TodoREST[TodoREST] - the REST services.
 . https://github.com/IanDarwin/TodoJSF[TodoJSF] - the JSF web application
 . https://github.com/IanDarwin/TodoAndroid[TodoAndroid] - the Android client
+. https://github.com/IanDarwin/TodoAndroidFireBase[TodoAndroidFirebase] - demo Android client for Google's FireBase; standalone, works but does *not* interoperate with the other modules.
 
 There will be More.
 
@@ -69,6 +70,8 @@ so the other modules can find it. `BUILD SUCCESS` --> Done.
 
 === The REST and JSF Services
 
+You need the REST service for the Android client!
+
 ----
 for d in TodoJSF TodoREST
 do
@@ -78,7 +81,7 @@ do
 done
 ----
 
-Now you need to set up your database and app server. For me, the database setup is something like this:
+Now you need to set up your database and app server. For Postgres, the database setup is something like this:
 
 ----
 psql
@@ -120,7 +123,7 @@ If it works, visit some URL like https://localhost/todolist and see a login page
 
 This is currently the least developed. IF you have the Android SDK installed, 
 and either an emulator running or a device connected,
-it *might* work do to this:
+try this:
 
 ----
 git clone https://github.com/IanDarwin/TodoAndroid
@@ -130,6 +133,6 @@ mvn package android:deploy android:run
 
 === Summary
 
-May all your todo items be completed someday.
+May all your todo items be completed someday. Or not.
 
 Ian
