@@ -1,4 +1,6 @@
-= ToDoMore: "To Do More, you must know what needs doing, and when"
+= TodoMore
+
+== "To Do More, you must know what needs doing, and when"
 
 ToDoMore is a Java geek's TODO list application. It has a command-line interface,
 a server-centric (JSF) web interface, an Android application (soon), and, well, more.
@@ -20,11 +22,11 @@ module, so you don't have to check out ones you don't want
 
 . https://github.com/IanDarwin/TodoModel[ToDoModel] - the data model classes, in Java, Annotated for JPA (so would work with Hibernate too). All the other modules need this (see minimal build instructions below).
 . https://github.com/IanDarwin/TodoREST[TodoREST] - the REST services.
-. https://github.com/IanDarwin/TodoJSF[TodoJSF] - the JSF web application
-. https://github.com/IanDarwin/TodoAndroid[TodoAndroid] - the Android client
+. https://github.com/IanDarwin/TodoJSF[TodoJSF] - the JSF web application.
+. https://github.com/IanDarwin/TodoAndroid[TodoAndroid] - the Android client; uses an Android `SyncAdapter` to keep device and server in sync.
 . https://github.com/IanDarwin/TodoAndroidFireBase[TodoAndroidFirebase] - demo Android client for Google's FireBase; standalone, works but does *not* interoperate with the other modules.
 
-There will be More.
+There will be More. Someday. Maybe you will write some More.
 
 == No lock-in
 
