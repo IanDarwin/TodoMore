@@ -31,9 +31,9 @@ There will be More. Someday. Maybe you will write some More.
 == No lock-in
 
 The TodoService module's JSF page can Export your Todo items in "standard"
-https://github.com/ginatrapani/todo.txt-cli/wiki/The-Todo.txt-Format[ToDoTxt.com]
+https://github.com/todotxt/todo.txt[ToDoTxt.com]
 format; there are http://todotxt.com/[numerous other ToDo apps]
-that can process this format.
+that can also process this format.
 
 == Security
 
