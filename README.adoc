@@ -73,6 +73,11 @@ Maven will download some pre-reqs, build the classes, run some self-tests there,
 package the entire data model into a Jar file, and install it in your personal Maven repo,
 so the other modules can find it. `BUILD SUCCESS` --> Done.
 
+*Breaking change*: 1.1.1 of DataModel removes our custom Date class and uses the
+standard Java LocalDate. Now that Java 12 is here, there is no reason to be using
+Java 7 or earlier. If you need to drag this code back into the stone age (sorry!),
+stop on the way to the cave and pick up a copy of the pre-Java-8 JodaTime package.
+
 === The REST and JSF Services
 
 You need the REST service for the Android client!
